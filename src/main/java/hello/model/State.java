@@ -1,20 +1,30 @@
 package hello.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class State {
 
-    private final long dia;
-    private final String clima;
+    private final int dia;
+    private final Climate clima;
+    @JsonIgnore private final double area;
 
-    public State(long dia, String clima) {
+    public State(int dia, Climate clima, double area) {
         this.dia = dia;
         this.clima = clima;
+        this.area = area;
     }
 
-    public long getDia() {
+    public int getDia() {
         return dia;
     }
 
-    public String getClima() {
+    public double getArea() {
+        return area;
+    }
+
+    public Climate getClima() {
         return clima;
     }
+
+
 }

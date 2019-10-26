@@ -7,8 +7,10 @@ import java.util.concurrent.atomic.AtomicLong;
 import hello.model.Planet;
 import hello.model.State;
 import hello.model.SolarSystem;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
@@ -19,10 +21,15 @@ public class SolarSystemController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
     private SolarSystem system;
+    private List<State> systemStates = new ArrayList<>();
+    private static final int TEN_YEARS = 3650;
 
     @RequestMapping("/clima")
-    public State getClimate(@RequestParam(value="dia", defaultValue="3650") String dia) {
-        return new State(Integer.parseInt(dia),"lluvia");
+    public State getClimate(@RequestParam(value="dia") String dia) {
+        if (Integer.parseInt(dia) < 0 || Integer.parseInt(dia) > TEN_YEARS) {
+            throw new YearOutOfRangeException();
+        }
+        return systemStates.get(Integer.parseInt(dia));
     }
 
     @PostConstruct
@@ -31,5 +38,14 @@ public class SolarSystemController {
         Planet betasoide = new Planet(2000,3,true);
         Planet vulcano = new Planet(1000,5,false);
         system = new SolarSystem(ferengi,betasoide,vulcano);
+        for (int i = 0; i< TEN_YEARS; i++) {
+            systemStates.add(new State(i,system.getClimate(),system.getArea()));
+            system.evolve(1);
+        }
+    }
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "Dia tiene que estar entre 0 y " + (TEN_YEARS - 1))
+    public class YearOutOfRangeException extends IllegalArgumentException {
+        public YearOutOfRangeException(){}
     }
 }

@@ -18,7 +18,9 @@ public class Planet {
         angle += days * speed * (clockwise ? -1 : 1);
         angle = Math.floorMod(angle, 360);
     }
-
+    public int getAngle() {
+        return angle;
+    }
     public Point2D toCartesian() {
         return new Point2D.Double(radius*Math.cos(angle*Math.PI/180), radius*Math.sin(angle*Math.PI/180));
     }
