@@ -14,11 +14,11 @@ public class Planet {
         this.clockwise = clockwise;
     }
 
-    public void evolve(int days) {
+    void evolve(int days) {
         angle += days * speed * (clockwise ? -1 : 1);
         angle = Math.floorMod(angle, 360);
     }
-    public int getAngle() {
+    int getAngle() {
         return angle;
     }
     public Point2D toCartesian() {

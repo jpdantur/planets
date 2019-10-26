@@ -2,7 +2,6 @@ package hello;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 import hello.model.Planet;
 import hello.model.State;
@@ -18,9 +17,6 @@ import javax.annotation.PostConstruct;
 @RestController
 public class SolarSystemController {
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-    private SolarSystem system;
     private List<State> systemStates = new ArrayList<>();
     private static final int TEN_YEARS = 3650;
 
@@ -37,7 +33,7 @@ public class SolarSystemController {
         Planet ferengi = new Planet(500,1,true);
         Planet betasoide = new Planet(2000,3,true);
         Planet vulcano = new Planet(1000,5,false);
-        system = new SolarSystem(ferengi,betasoide,vulcano);
+        SolarSystem system = new SolarSystem(ferengi,betasoide,vulcano);
         for (int i = 0; i< TEN_YEARS; i++) {
             systemStates.add(new State(i,system.getClimate(),system.getArea()));
             system.evolve(1);
@@ -46,6 +42,6 @@ public class SolarSystemController {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "Dia tiene que estar entre 0 y " + (TEN_YEARS - 1))
     public class YearOutOfRangeException extends IllegalArgumentException {
-        public YearOutOfRangeException(){}
+        YearOutOfRangeException(){}
     }
 }
