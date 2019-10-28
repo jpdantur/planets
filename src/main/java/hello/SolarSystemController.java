@@ -36,6 +36,7 @@ public class SolarSystemController {
         return system.getData();
     }
 
+
     @PostConstruct
     public void calculate() {
         Planet ferengi = new Planet(500,1,true);

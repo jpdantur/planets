@@ -14,6 +14,12 @@ public class Planet {
         this.clockwise = clockwise;
     }
 
+
+    /**
+     *
+     * @param days Amount of days to evolve the planet
+     * Evolves the planet status based on the speed and the direction
+     */
     public void evolve(int days) {
         angle += days * speed * (clockwise ? -1 : 1);
         angle = Math.floorMod(angle, 360);
@@ -21,6 +27,11 @@ public class Planet {
     public int getAngle() {
         return angle;
     }
+
+    /**
+     *
+     * @return A point with the cartesian coordinates of the planet
+     */
     public Point2D toCartesian() {
         return new Point2D.Double(radius*Math.cos(angle*Math.PI/180), radius*Math.sin(angle*Math.PI/180));
     }
