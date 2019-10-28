@@ -1,6 +1,6 @@
 # About this app
 
-Webapp which estimates climate for Solar System composed of planets Vulcano, Betasoide and Ferengi. Full explanation in spanish can be found [here](ejercicio-planetas.pdf)
+Webapp which estimates climate for Solar System composed of planets Vulcano, Betasoide and Ferengi. Full explanation in spanish can be found [here](ejercicio-planetas.pdf). All info is calculated when application starts.
 
 # How to Run
 
