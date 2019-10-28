@@ -10,7 +10,14 @@ To run the app locally, execute `./mvnw spring-boot:run` on the root directory. 
 
 ## GET /clima?dia=X
 
-Obtain climate for day X. Possible values: `lluvia`, `sequia`, `optimo`, `otro`. X must be between 0 and 3650.
+Obtain climate for day X. Possible values: `lluvia`, `sequia`, `optimo`, `otro`. X must be between 0 and 3650. Output has the following format:
+
+```json
+{
+  "dia": "X",
+  "clima": "lluvia/sequia/optimo/otro"
+}
+```
 
 ## GET /calculo
 
