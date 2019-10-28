@@ -18,9 +18,9 @@ Obtain a JSON object with the following aggregate data from days 0 to 3650:
 
 ```json
 {
-  "dryPeriods": "Amount of periods with dry climate. Periods are defined as sucessions of consecutive days with same climate.",
+  "dryPeriods": "Amount of periods with dry climate. Periods are defined as sucessions of consecutive days with same climate",
   "rainyPeriods": "Amount of periods with rainy climate",
-  "rainPeakDay": "Day with highest rain".
+  "rainPeakDay": "Day with highest rain",
   "optimalPeriods": "Amount of periods with optimal climate"
 }
 ```
